@@ -1,0 +1,27 @@
+int Solution::pow(int x, int n, int d) {
+    if(x == 0)
+        return 0;
+    if(n == 0)
+        return 1;
+    if(d == 1 || (x % d) == 0)
+        return 0;
+    
+    int r = 1;
+    long long int power = x % d;
+    
+    while(n != 0){
+        if(n % 2 != 0){
+            r = (r * power) % d;
+            if(r > d)
+                r %= d;
+        }
+        power *= power;
+        power %= d;
+        n /= 2;
+    }
+    
+    if(r < 0)
+        r += d;
+        
+    return r;
+}
